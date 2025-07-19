@@ -22,3 +22,23 @@ class TelegramNotifier:
                 print(f"Failed to send message to Telegram: {e}")
         else:
             print(f"Telegram logs are disabled. Message not sent: {message}")
+
+    def pingpong(self, parse_mode: str = "HTML"):
+        if not Config.TELEGRAM_LOGS:
+            print("Telegram logs are disabled.")
+            return
+
+        is_alive = self.check_bot_status()
+        message = "✅ Бот доступен" if is_alive else "❌ Бот недоступен"
+        self.send_message(message, parse_mode=parse_mode)
+
+    def check_bot_status(self):
+        url = f"https://api.telegram.org/bot{self.token}/getMe"
+        try:
+            response = httpx.get(url, timeout=5)
+            if response.status_code == 200 and response.json().get("ok"):
+                return True
+            return False
+        except httpx.RequestError:
+            return False
+
