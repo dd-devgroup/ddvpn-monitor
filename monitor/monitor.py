@@ -50,8 +50,14 @@ class NodeMonitor:
         )
         while True:
             try:
-                logging.info("Начало мониторинга узлов...")
+                logging.info("Начало проверки бота...")
                 start_time = time.time()
+                try:
+                    self.notifier.pingpong()
+                except Exception as ex:
+                    logging.info(f"Во время ping бота произошла ошибка: {ex}")
+
+                logging.info("Начало мониторинга узлов...")
 
                 try:
                     nodes = self.api.get_nodes()
