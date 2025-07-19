@@ -5,6 +5,7 @@ from .config import Config
 class TelegramNotifier:
     def __init__(self):
         self.token = Config.TELEGRAM_TOKEN
+        self.another_token = Config.ANOTHER_TOKEN
         self.chat_id = Config.TELEGRAM_CHAT_ID
         self.thread_chat_id = Config.TELEGRAM_THREAD_CHAT_ID
         self.api_url = f"https://api.telegram.org/bot{self.token}/sendMessage"
@@ -23,6 +24,7 @@ class TelegramNotifier:
         else:
             print(f"Telegram logs are disabled. Message not sent: {message}")
 
+    # Метод pingpong проверяет доступность бота с another_token
     def pingpong(self, parse_mode: str = "HTML"):
         if not Config.TELEGRAM_LOGS:
             print("Telegram logs are disabled.")
@@ -33,7 +35,7 @@ class TelegramNotifier:
         self.send_message(message, parse_mode=parse_mode)
 
     def check_bot_status(self):
-        url = f"https://api.telegram.org/bot{self.token}/getMe"
+        url = f"https://api.telegram.org/bot{self.another_token}/getMe"
         try:
             response = httpx.get(url, timeout=5)
             if response.status_code == 200 and response.json().get("ok"):

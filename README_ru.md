@@ -44,6 +44,7 @@ curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
     MARZBAN_USERNAME=your_username
     MARZBAN_PASSWORD=your_password
     TELEGRAM_TOKEN=your_telegram_bot_token
+    ANOTHER_TOKEN=your_main_bot_token
     TELEGRAM_CHAT_ID=your_telegram_chat_id
     TELEGRAM_THREAD_CHAT_ID=
     REDIS_HOST=redis

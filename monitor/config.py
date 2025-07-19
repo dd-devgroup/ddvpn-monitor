@@ -9,6 +9,7 @@ class Config:
     MARZBAN_USERNAME = os.getenv("MARZBAN_USERNAME", "admin").strip()
     MARZBAN_PASSWORD = os.getenv("MARZBAN_PASSWORD", "PASSWORD").strip()
     TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "TOKEN").strip()
+    ANOTHER_TOKEN = os.getenv("ANOTHER_TOKEN", "ANOTHER_TOKEN").strip()
     TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "-1002178231").strip()
     TELEGRAM_THREAD_CHAT_ID = os.getenv("TELEGRAM_THREAD_CHAT_ID", "").strip()
     REDIS_HOST = os.getenv("REDIS_HOST", "redis").strip()
